@@ -1,16 +1,21 @@
-<nav class="app-header navbar navbar-expand bg-body">
+<nav class="app-header navbar navbar-expand bg-body py-3">
 
     <div class="container-fluid">
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+                <a class="navbar-brand text-white fw-bold fs-4 nav-link" data-lte-toggle="sidebar" href="index.php" role="button">
+                <img src="assets/img/logo.png" alt="Logo" width="50" class="me-2">
                     <i class="bi bi-list"></i>
                 </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="index.php" class="nav-link">Beranda</a></li>
+            <h3 class="mb-0">FRUITY LOOPY'S</h3>
         </ul>
-
+        <div class="card-body">
+    	<a href="data-input.php" class="btn btn-primary"><i class="bi bi-clipboard-data-fill"></i> Input Transaksi</a>
+		<a href="data-list.php" class="btn btn-success "><i class="bi bi-card-list"></i> Lihat Daftar Transaksi</a>
+		<a href="data-search.php" class="btn btn-warning"><i class="bi bi-search-heart-fill"></i> Cari Transaksi</a>
+        </div>
         <ul class="navbar-nav ms-auto">
 
             <li class="nav-item">
@@ -31,3 +36,5 @@
     </div>
 
 </nav>
+
+
