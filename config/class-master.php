@@ -21,20 +21,23 @@ class MasterData extends Database {
         return $prodi;
     }
 
-    // Method untuk mendapatkan daftar provinsi
-    public function getProvinsi(){
-        $query = "SELECT * FROM tb_provinsi";
+    // Method untuk mendapatkan daftar pelanggan
+    public function getPelanggan(){
+        $query = "SELECT * FROM tb_pelanggan";
         $result = $this->conn->query($query);
-        $provinsi = [];
+        $pelanggan = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $provinsi[] = [
-                    'id' => $row['id_provinsi'],
-                    'nama' => $row['nama_provinsi']
+                $pelanggan[] = [
+                    'id' => $row['id_pelanggan'],
+                    'nama' => $row['nama_pelanggan'],
+                    'no' => $row['no_hp'],
+                    'alm' => $row['alamat'],
+                    'eml' => $row['email']
                 ];
             }
         }
-        return $provinsi;
+        return $pelanggan;
     }
 
     // Method untuk mendapatkan daftar status mahasiswa menggunakan array statis
@@ -112,23 +115,23 @@ class MasterData extends Database {
         return $result;
     }
 
-    // Method untuk input data provinsi
-    public function inputProvinsi($data){
-        $namaProvinsi = $data['nama'];
-        $query = "INSERT INTO tb_provinsi (nama_provinsi) VALUES (?)";
+    // Method untuk input data pelanggan
+    public function inputPelanggan($data){
+        $namaPelanggan = $data['nama'];
+        $query = "INSERT INTO tb_pelanggan (nama_pelanggan) VALUES (?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
-        $stmt->bind_param("s", $namaProvinsi);
+        $stmt->bind_param("s", $namaPelanggan);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
     // Method untuk mendapatkan data provinsi berdasarkan id
-    public function getUpdateProvinsi($id){
-        $query = "SELECT * FROM tb_provinsi WHERE id_provinsi = ?";
+    public function getUpdatePelanggan($id){
+        $query = "SELECT * FROM tb_pelanggan WHERE id_pelanggan = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -136,36 +139,42 @@ class MasterData extends Database {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $provinsi = null;
+        $pelanggan = null;
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
-            $provinsi = [
-                'id' => $row['id_provinsi'],
-                'nama' => $row['nama_provinsi']
+            $pelanggan = [
+                'id' => $row['id_pelanggan'],
+                'nama' => $row['nama_pelanggan'],
+                'no' => $row['no_hp'],
+                'alm' => $row['alamat'],
+                'eml' => $row['email']
             ];
         }
         $stmt->close();
-        return $provinsi;
+        return $pelanggan;
     }
 
-    // Method untuk mengedit data provinsi
-    public function updateProvinsi($data){
-        $idProvinsi = $data['id'];
-        $namaProvinsi = $data['nama'];
-        $query = "UPDATE tb_provinsi SET nama_provinsi = ? WHERE id_provinsi = ?";
+    // Method untuk mengedit data pelanggan
+    public function updatePelanggan($data){
+        $idPelanggan = $data['id'];
+        $namaPelanggan = $data['nama'];
+        $nohpPelanggan = $data['no_hp'];
+        $alamatPelanggan = $data['alamat'];
+        $emailPelanggan = $data['email'];
+        $query = "UPDATE tb_pelanggan SET nama_pelanggan = ? WHERE id_pelanggan = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
-        $stmt->bind_param("si", $namaProvinsi, $idProvinsi);
+        $stmt->bind_param("si", $namaPelanggan, $idPelanggan);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
-    // Method untuk menghapus data provinsi
-    public function deleteProvinsi($id){
-        $query = "DELETE FROM tb_provinsi WHERE id_provinsi = ?";
+    // Method untuk menghapus data pelanggan
+    public function deletePelanggan($id){
+        $query = "DELETE FROM tb_pelanggan WHERE id_pelanggan = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;

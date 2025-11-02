@@ -3,9 +3,9 @@
 include_once 'config/class-master.php';
 $master = new MasterData();
 // Mengambil daftar program studi, provinsi, dan status mahasiswa
-$prodiList = $master->getProdi();
+$buahList = $master->getBuah();
 // Mengambil daftar provinsi
-$provinsiList = $master->getProvinsi();
+$pelangganList = $master->getPelanggan();
 // Mengambil daftar status mahasiswa
 $statusList = $master->getStatus();
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
@@ -76,13 +76,13 @@ if(isset($_GET['status'])){
                                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap Mahasiswa" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="prodi" class="form-label">Program Studi</label>
-                                                <select class="form-select" id="prodi" name="prodi" required>
-                                                    <option value="" selected disabled>Pilih Program Studi</option>
+                                                <label for="buah" class="form-label">Data Buah</label>
+                                                <select class="form-select" id="buah" name="buah" required>
+                                                    <option value="" selected disabled>Pilih Buah</option>
                                                     <?php 
-                                                    // Iterasi daftar program studi dan menampilkannya sebagai opsi dalam dropdown
-                                                    foreach ($prodiList as $prodi){
-                                                        echo '<option value="'.$prodi['id'].'">'.$prodi['nama'].'</option>';
+                                                    // Iterasi daftar buah dan menampilkannya sebagai opsi dalam dropdown
+                                                    foreach ($buahList as $buah){
+                                                        echo '<option value="'.$buah['id'].'">'.$buah['nama'].'</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -92,13 +92,13 @@ if(isset($_GET['status'])){
                                                 <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan Alamat Lengkap Sesuai KTP" required></textarea>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="provinsi" class="form-label">Provinsi</label>
-                                                <select class="form-select" id="provinsi" name="provinsi" required>
-                                                    <option value="" selected disabled>Pilih Provinsi</option>
+                                                <label for="pelanggan" class="form-label">Pelanggan</label>
+                                                <select class="form-select" id="pelanggan" name="pelanggan" required>
+                                                    <option value="" selected disabled>Pilih Pelanggan</option>
                                                     <?php
                                                     // Iterasi daftar provinsi dan menampilkannya sebagai opsi dalam dropdown
-                                                    foreach ($provinsiList as $provinsi){
-                                                        echo '<option value="'.$provinsi['id'].'">'.$provinsi['nama'].'</option>';
+                                                    foreach ($pelangganList as $pelanggan){
+                                                        echo '<option value="'.$pelanggan['id'].'">'.$pelanggan['nama'].'</option>';
                                                     }
                                                     ?>
                                                 </select>
