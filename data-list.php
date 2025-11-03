@@ -1,21 +1,21 @@
 <?php
 
-include_once 'config/class-mahasiswa.php';
-$mahasiswa = new Mahasiswa();
+include_once 'config/class-trx.php';
+$trx = new Trx();
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
 if(isset($_GET['status'])){
 	// Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
 	if($_GET['status'] == 'inputsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil ditambahkan.');</script>";
+		echo "<script>alert('Data trx berhasil ditambahkan.');</script>";
 	} else if($_GET['status'] == 'editsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil diubah.');</script>";
+		echo "<script>alert('Data trx berhasil diubah.');</script>";
 	} else if($_GET['status'] == 'deletesuccess'){
-		echo "<script>alert('Data mahasiswa berhasil dihapus.');</script>";
+		echo "<script>alert('Data trx berhasil dihapus.');</script>";
 	} else if($_GET['status'] == 'deletefailed'){
-		echo "<script>alert('Gagal menghapus data mahasiswa. Silakan coba lagi.');</script>";
+		echo "<script>alert('Gagal menghapus data trx. Silakan coba lagi.');</script>";
 	}
 }
-$dataMahasiswa = $mahasiswa->getAllMahasiswa();
+$dataTrx = $trx->getAllTrx();
 
 ?>
 <!doctype html>
@@ -38,7 +38,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Daftar Mahasiswa</h3>
+								<h3 class="mb-0">Daftar Transaksi</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -71,48 +71,53 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>No</th>
-													<th>NIM</th>
-													<th>Nama</th>
-													<th>Buah</th>
-													<th>Pelanggan</th>
-													<th>Alamat</th>
-													<th>Telp</th>
-													<th>Email</th>
+													<th>id</th>
+													<th>kode</th>
+													<th>tgl</th>
+													<th>pelanggan</th>
+													<th>qty</th>
+													<th>satuan</th>
+													<th>harga</th>
+													<th>metode</th>
+													<th>buah</th>
+													<th>status</th>
 													<th class="text-center">Status</th>
 													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
-													if(count($dataMahasiswa) == 0){
+													if(count($dataTrx) == 0){
 													    echo '<tr class="align-middle">
-															<td colspan="10" class="text-center">Tidak ada data mahasiswa.</td>
+															<td colspan="10" class="text-center">Tidak ada data trx.</td>
 														</tr>';
 													} else {
-														foreach ($dataMahasiswa as $index => $mahasiswa){
-															if($mahasiswa['status'] == 1){
-															    $mahasiswa['status'] = '<span class="badge bg-success">Aktif</span>';
-															} elseif($mahasiswa['status'] == 2){
-															    $mahasiswa['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
-															} elseif($mahasiswa['status'] == 3){
-															    $mahasiswa['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-															} elseif($mahasiswa['status'] == 4){
-															    $mahasiswa['status'] = '<span class="badge bg-primary">Lulus</span>';
+														foreach ($dataTrx as $index => $trx){
+															if($trx['status'] == 1){
+															    $trx['status'] = '<span class="badge bg-success">Aktif</span>';
+															} elseif($trx['status'] == 2){
+															    $trx['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+															} elseif($trx['status'] == 3){
+															    $trx['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
+															} elseif($trx['status'] == 4){
+															    $trx['status'] = '<span class="badge bg-primary">Lulus</span>';
 															} 
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
-																<td>'.$mahasiswa['nim'].'</td>
-																<td>'.$mahasiswa['nama'].'</td>
-																<td>'.$mahasiswa['databuah'].'</td>
-																<td>'.$mahasiswa['pelanggan'].'</td>
-																<td>'.$mahasiswa['alamat'].'</td>
-																<td>'.$mahasiswa['telp'].'</td>
-																<td>'.$mahasiswa['email'].'</td>
-																<td class="text-center">'.$mahasiswa['status'].'</td>
+																<td>'.$trx['id'].'</td>
+																<td>'.$trx['kode'].'</td>
+																<td>'.$trx['tgl'].'</td>
+																<td>'.$trx['pelanggan'].'</td>
+																<td>'.$trx['qty'].'</td>
+																<td>'.$trx['satuan'].'</td>
+																<td>'.$trx['harga'].'</td>
+																<td>'.$trx['metode'].'</td>
+																<td>'.$trx['buah'].'</td>
+																<td>'.$trx['status'].'</td>
+																<td class="text-center">'.$trx['status'].'</td>
 																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$mahasiswa['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$mahasiswa['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$trx['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$trx['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}
@@ -122,7 +127,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 										</table>
 									</div>
 									<div class="card-footer">
-										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Mahasiswa</button>
+										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Transaksi</button>
 									</div>
 								</div>
 							</div>

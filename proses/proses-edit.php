@@ -1,30 +1,31 @@
 <?php
 
 // Memasukkan file class-mahasiswa.php untuk mengakses class Mahasiswa
-include_once '../config/class-mahasiswa.php';
+include_once '../config/class-trx.php';
 // Membuat objek dari class Mahasiswa
-$mahasiswa = new Mahasiswa();
+$trx = new Trx();
 // Mengambil data mahasiswa dari form edit menggunakan metode POST dan menyimpannya dalam array
-$dataMahasiswa = [
+$dataTrx = [
     'id' => $_POST['id'],
-    'nim' => $_POST['nim'],
-    'nama' => $_POST['nama'],
-    'buah' => $_POST['buah'],
-    'alamat' => $_POST['alamat'],
+    'kode' => $_POST['kode'],
+    'tgl' => $_POST['tgl'],
     'pelanggan' => $_POST['pelanggan'],
-    'email' => $_POST['email'],
-    'telp' => $_POST['telp'],
+    'qty' => $_POST['qty'],
+    'satuan' => $_POST['satuan'],
+    'harga' => $_POST['harga'],
+    'metode' => $_POST['metode'],
+    'buah' => $_POST['buah']
     'status' => $_POST['status']
 ];
 // Memanggil method editMahasiswa untuk mengupdate data mahasiswa dengan parameter array $dataMahasiswa
-$edit = $mahasiswa->editMahasiswa($dataMahasiswa);
+$edit = $trx->editTrx($dataTrx);
 // Mengecek apakah proses edit berhasil atau tidak - true/false
 if($edit){
     // Jika berhasil, redirect ke halaman data-list.php dengan status editsuccess
     header("Location: ../data-list.php?status=editsuccess");
 } else {
     // Jika gagal, redirect ke halaman data-edit.php dengan status failed dan membawa id mahasiswa
-    header("Location: ../data-edit.php?id=".$dataMahasiswa['id']."&status=failed");
+    header("Location: ../data-edit.php?id=".$dataTrx['id']."&status=failed");
 }
 
 ?>

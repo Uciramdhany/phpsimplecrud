@@ -1,9 +1,9 @@
 <?php 
 
 include_once 'config/class-master.php';
-include_once 'config/class-mahasiswa.php';
+include_once 'config/class-trx.php';
 $master = new MasterData();
-$mahasiswa = new Mahasiswa();
+$trx = new Trx();
 // Mengambil daftar program studi, provinsi, dan status mahasiswa
 $buahList = $master->getBuah();
 // Mengambil daftar provinsi
@@ -11,10 +11,10 @@ $pelangganList = $master->getPelanggan();
 // Mengambil daftar status mahasiswa
 $statusList = $master->getStatus();
 // Mengambil data mahasiswa yang akan diedit berdasarkan id dari parameter GET
-$dataMahasiswa = $mahasiswa->getUpdateMahasiswa($_GET['id']);
+$dataTrx = $trx->getUpdateTrx($_GET['id']);
 if(isset($_GET['status'])){
     if($_GET['status'] == 'failed'){
-        echo "<script>alert('Gagal mengubah data mahasiswa. Silakan coba lagi.');</script>";
+        echo "<script>alert('Gagal mengubah data transaksi. Silakan coba lagi.');</script>";
     }
 }
 ?>
@@ -38,7 +38,7 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Edit Mahasiswa</h3>
+								<h3 class="mb-0">Edit Transaksi</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -56,7 +56,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Mahasiswa</h3>
+										<h3 class="card-title">Formulir Transaksi</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -69,14 +69,14 @@ if(isset($_GET['status'])){
 									</div>
                                     <form action="proses/proses-edit.php" method="POST">
 									    <div class="card-body">
-                                            <input type="hidden" name="id" value="<?php echo $dataMahasiswa['id']; ?>">
+                                            <input type="hidden" name="id" value="<?php echo $dataTrx['id']; ?>">
                                             <div class="mb-3">
-                                                <label for="nim" class="form-label">Nomor Induk Mahasiswa (NIM)</label>
-                                                <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukkan NIM Mahasiswa" value="<?php echo $dataMahasiswa['nim']; ?>" required>
+                                                <label for="nim" class="form-label">Identifikasi Transaksi (ID)</label>
+                                                <input type="number" class="form-control" id="id" name="id" placeholder="Masukkan ID Transaksi" value="<?php echo $dataTrx['id']; ?>" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap Mahasiswa" value="<?php echo $dataMahasiswa['nama']; ?>" required>
+                                                <label for="nama" class="form-label">Kode Transaksi</label>
+                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Transaksi" value="<?php echo $dataTrx['kode']; ?>" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="prodi" class="form-label">Data Buah</label>
@@ -88,7 +88,7 @@ if(isset($_GET['status'])){
                                                         // Menginisialisasi variabel kosong untuk menandai opsi yang dipilih
                                                         $selectedBuah = "";
                                                         // Mengecek apakah program studi saat ini sesuai dengan data mahasiswa
-                                                        if($dataMahasiswa['buah'] == $buah['id']){
+                                                        if($dataTrx['buah'] == $buah['id']){
                                                             // Jika sesuai, tandai sebagai opsi yang dipilih
                                                             $selectedBuah = "selected";
                                                         }
@@ -99,11 +99,11 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan Alamat Lengkap Sesuai KTP" required><?php echo $dataMahasiswa['alamat']; ?></textarea>
+                                                <label for="alamat" class="form-label">Tanggal</label>
+                                                <textarea class="form-control" id="tanggal" name="tanggal" rows="3" placeholder="Masukkan Tanggal Transaksi" required><?php echo $dataTrx['tanggal']; ?></textarea>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="provinsi" class="form-label">Pelanggan</label>
+                                                <label for="pelanggan" class="form-label">Pelanggan</label>
                                                 <select class="form-select" id="pelanggan" name="pelanggan" required>
                                                     <option value="" selected disabled>Pilih Pelanggan</option>
                                                     <?php
@@ -112,7 +112,7 @@ if(isset($_GET['status'])){
                                                         // Menginisialisasi variabel kosong untuk menandai opsi yang dipilih
                                                         $selectedPelanggan = "";
                                                         // Mengecek apakah pelanggan saat ini sesuai dengan data mahasiswa
-                                                        if($dataMahasiswa['pelanggan'] == $pelanggan['id']){
+                                                        if($dataTrx['pelanggan'] == $pelanggan['id']){
                                                             // Jika sesuai, tandai sebagai opsi yang dipilih
                                                             $selectedPelanggan = "selected";
                                                         }
@@ -123,12 +123,12 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Valid dan Benar" value="<?php echo $dataMahasiswa['email']; ?>" required>
+                                                <label for="qty" class="form-label">quantity</label>
+                                                <input type="qty" class="form-control" id="qty" name="qty" placeholder="Masukkan qty Valid dan Benar" value="<?php echo $dataTrx['qty']; ?>" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="telp" class="form-label">Nomor Telepon</label>
-                                                <input type="tel" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon/HP" value="<?php echo $dataMahasiswa['telp']; ?>" pattern="[0-9+\-\s()]{6,20}" required>
+                                                <label for="satuan" class="form-label">Harga Satuan</label>
+                                                <input type="satuan" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Harga Satuan" value="<?php echo $dataTrx['satuan']; ?>" pattern="[0-9+\-\s()]{6,20}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="status" class="form-label">Status</label>
@@ -140,7 +140,7 @@ if(isset($_GET['status'])){
                                                         // Menginisialisasi variabel kosong untuk menandai opsi yang dipilih
                                                         $selectedStatus = "";
                                                         // Mengecek apakah status saat ini sesuai dengan data mahasiswa
-                                                        if($dataMahasiswa['status'] == $status['id']){
+                                                        if($dataTrx['status'] == $status['id']){
                                                             // Jika sesuai, tandai sebagai opsi yang dipilih
                                                             $selectedStatus = "selected";
                                                         }

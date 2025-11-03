@@ -3,28 +3,29 @@
 // Memasukkan file konfigurasi database
 include_once 'db-config.php';
 
-class Mahasiswa extends Database {
+class Trx extends Database {
 
     // Method untuk input data mahasiswa
-    public function inputMahasiswa($data){
+    public function inputTrx($data){
         // Mengambil data dari parameter $data
-        $nim      = $data['nim'];
-        $nama     = $data['nama'];
-        $prodi    = $data['prodi'];
-        $alamat   = $data['alamat'];
-        $pelanggan = $data['pelanggan'];
-        $email    = $data['email'];
-        $telp     = $data['telp'];
+        $id      = $data['id'];
+        $kode     = $data['kode'];
+        $tgl    = $data['tgl'];
+        $pelanggan   = $data['pelanggan'];
+        $qty = $data['qty'];
+        $harga     = $data['harga'];
+        $metode   = $data['metode'];
+        $buah   = $data['buah'];
         $status   = $data['status'];
         // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_mahasiswa (nim_mhs, nama_mhs, prodi_mhs, alamat, pelanggan, email, telp, status_mhs) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO tb_mahasiswa (id_trx, kode_trx, tgl_trx, pelanggan, total_qty, total_harga, metode_bayar, buah, status_trx) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         // Mengecek apakah statement berhasil disiapkan
         if(!$stmt){
             return false;
         }
         // Memasukkan parameter ke statement
-        $stmt->bind_param("ssssssss", $nim, $nama, $prodi, $alamat, $pelanggan, $email, $telp, $status);
+        $stmt->bind_param("sssssssss", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
         $result = $stmt->execute();
         $stmt->close();
         // Mengembalikan hasil eksekusi query
@@ -32,40 +33,40 @@ class Mahasiswa extends Database {
     }
 
     // Method untuk mengambil semua data mahasiswa
-    public function getAllMahasiswa(){
+    public function getAllTrx(){
         // Menyiapkan query SQL untuk mengambil data mahasiswa beserta prodi dan provinsi
-        $query = "SELECT id_mhs, nim_mhs, nama_mhs, nama_buah, nama_pelanggan, alamat, email, telp, status_mhs 
-                  FROM tb_mahasiswa
+        $query = "SELECT id_trx, kode_trx, tgl_trx, nama_pelanggan, total_qty, total_harga, metode_bayar, nama_buah, status_trx 
+                  FROM tb_trx
                   JOIN tb_buah ON buah = id_buah
                   JOIN tb_pelanggan ON pelanggan = id_pelanggan";
         $result = $this->conn->query($query);
         // Menyiapkan array kosong untuk menyimpan data mahasiswa
-        $mahasiswa = [];
+        $trx = [];
         // Mengecek apakah ada data yang ditemukan
         if($result->num_rows > 0){
             // Mengambil setiap baris data dan memasukkannya ke dalam array
             while($row = $result->fetch_assoc()) {
-                $mahasiswa[] = [
-                    'id' => $row['id_mhs'],
-                    'nim' => $row['nim_mhs'],
-                    'nama' => $row['nama_mhs'],
-                    'buah' => $row['nama_buah'],
+                $trx[] = [
+                    'id' => $row['id_trx'],
+                    'kode' => $row['kode_trx'],
+                    'tgl' => $row['tgl_trx'],
                     'pelanggan' => $row['nama_pelanggan'],
-                    'alamat' => $row['alamat'],
-                    'email' => $row['email'],
-                    'telp' => $row['telp'],
-                    'status' => $row['status_mhs']
+                    'qty' => $row['total_qty'],
+                    'harga' => $row['total_harga'],
+                    'metode' => $row['metode_bayar'],
+                    'buah' => $row['nama_buah'],
+                    'status' => $row['status_trx']
                 ];
             }
         }
         // Mengembalikan array data mahasiswa
-        return $mahasiswa;
+        return $trx;
     }
 
     // Method untuk mengambil data mahasiswa berdasarkan ID
-    public function getUpdateMahasiswa($id){
+    public function getUpdateTrx($id){
         // Menyiapkan query SQL untuk mengambil data mahasiswa berdasarkan ID menggunakan prepared statement
-        $query = "SELECT * FROM tb_mahasiswa WHERE id_mhs = ?";
+        $query = "SELECT * FROM tb_trx WHERE id_trx = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -79,15 +80,15 @@ class Mahasiswa extends Database {
             $row = $result->fetch_assoc();
             // Menyimpan data dalam array
             $data = [
-                'id' => $row['id_mhs'],
-                'nim' => $row['nim_mhs'],
-                'nama' => $row['nama_mhs'],
-                'databuah' => $row['nama_buah'],
-                'alamat' => $row['alamat'],
-                'pelanggan' => $row['pelanggan'],
-                'email' => $row['email'],
-                'telp' => $row['telp'],
-                'status' => $row['status_mhs']
+                'id' => $row['id_trx'],
+                'kode' => $row['kode_trx'],
+                'tgl' => $row['tgl_trx'],
+                'pelanggan' => $row['nama_pelanggan'],
+                'qty' => $row['total_qty'],
+                'harga' => $row['total_harga'],
+                'metode' => $row['metode_bayar'],
+                'buah' => $row['nama_buah'],
+                'status' => $row['status_trx']
             ];
         }
         $stmt->close();
@@ -96,25 +97,25 @@ class Mahasiswa extends Database {
     }
 
     // Method untuk mengedit data mahasiswa
-    public function editMahasiswa($data){
+    public function editTrx($data){
         // Mengambil data dari parameter $data
-        $id       = $data['id'];
-        $nim      = $data['nim'];
-        $nama     = $data['nama'];
-        $databuah    = $data['databuah'];
-        $alamat   = $data['alamat'];
-        $pelanggan = $data['pelanggan'];
-        $email    = $data['email'];
-        $telp     = $data['telp'];
+        $id      = $data['id'];
+        $kode     = $data['kode'];
+        $tgl    = $data['tgl'];
+        $pelanggan   = $data['pelanggan'];
+        $qty = $data['qty'];
+        $harga     = $data['harga'];
+        $metode   = $data['metode'];
+        $buah   = $data['buah'];
         $status   = $data['status'];
         // Menyiapkan query SQL untuk update data menggunakan prepared statement
-        $query = "UPDATE tb_mahasiswa SET nim_mhs = ?, nama_mhs = ?, prodi_mhs = ?, alamat = ?, pelanggan = ?, email = ?, telp = ?, status_mhs = ? WHERE id_mhs = ?";
+        $query = "UPDATE tb_trx SET id_trx = ?, kode_trx = ?, tgl_trx = ?, pelanggan = ?, total_qty = ?, harga_satuan = ?, total_harga = ?, metode_bayar = ?, buah = ?, status_trx = ? WHERE id_trx = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
         // Memasukkan parameter ke statement
-        $stmt->bind_param("ssssssssi", $nim, $nama, $databuah, $alamat, $pelanggan, $email, $telp, $status, $id);
+        $stmt->bind_param("sssssssssi", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
         $result = $stmt->execute();
         $stmt->close();
         // Mengembalikan hasil eksekusi query
@@ -122,9 +123,9 @@ class Mahasiswa extends Database {
     }
 
     // Method untuk menghapus data mahasiswa
-    public function deleteMahasiswa($id){
+    public function deleteTrx($id){
         // Menyiapkan query SQL untuk delete data menggunakan prepared statement
-        $query = "DELETE FROM tb_mahasiswa WHERE id_mhs = ?";
+        $query = "DELETE FROM tb_trx WHERE id_trx = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -137,15 +138,15 @@ class Mahasiswa extends Database {
     }
 
     // Method untuk mencari data mahasiswa berdasarkan kata kunci
-    public function searchMahasiswa($kataKunci){
+    public function searchTrx($kataKunci){
         // Menyiapkan LIKE query untuk pencarian
         $likeQuery = "%".$kataKunci."%";
         // Menyiapkan query SQL untuk pencarian data mahasiswa menggunakan prepared statement
-        $query = "SELECT id_mhs, nim_mhs, nama_mhs, nama_buah, nama_pelanggan, alamat, email, telp, status_mhs 
-                  FROM tb_mahasiswa
-                  JOIN tb_databuah ON nama_buah = kode_buah
+        $query = "SELECT id_trx, kode_trx, tgl_trx, nama_pelanggan, total_qty, total_harga, metode_bayar, nama_buah, status_mhs 
+                  FROM tb_trx
+                  JOIN tb_buah ON buah = kode_buah
                   JOIN tb_pelanggan ON pelanggan = id_pelanggan
-                  WHERE nim_mhs LIKE ? OR nama_mhs LIKE ?";
+                  WHERE id_trx LIKE ? OR kode_trx LIKE ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             // Mengembalikan array kosong jika statement gagal disiapkan
@@ -161,22 +162,22 @@ class Mahasiswa extends Database {
             // Mengambil setiap baris data dan memasukkannya ke dalam array
             while($row = $result->fetch_assoc()) {
                 // Menyimpan data mahasiswa dalam array
-                $mahasiswa[] = [
-                    'id' => $row['id_mhs'],
-                    'nim' => $row['nim_mhs'],
-                    'nama' => $row['nama_mhs'],
-                    'databuah' => $row['nama_buah'],
+                $trx[] = [
+                    'id' => $row['id_trx'],
+                    'kode' => $row['kode_trx'],
+                    'tgl' => $row['tgl_trx'],
                     'pelanggan' => $row['nama_pelanggan'],
-                    'alamat' => $row['alamat'],
-                    'email' => $row['email'],
-                    'telp' => $row['telp'],
-                    'status' => $row['status_mhs']
+                    'qty' => $row['total_qty'],
+                    'harga' => $row['total_harga'],
+                    'metode' => $row['metode_bayar'],
+                    'buah' => $row['nama_buah'],
+                    'status' => $row['status_trx']
                 ];
             }
         }
         $stmt->close();
         // Mengembalikan array data mahasiswa yang ditemukan
-        return $mahasiswa;
+        return $trx;
     }
 
 }

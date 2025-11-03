@@ -12,7 +12,7 @@ $statusList = $master->getStatus();
 if(isset($_GET['status'])){
     // Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
     if($_GET['status'] == 'failed'){
-        echo "<script>alert('Gagal menambahkan data mahasiswa. Silakan coba lagi.');</script>";
+        echo "<script>alert('Gagal menambahkan data Transaksi. Silakan coba lagi.');</script>";
     }
 }
 ?>
@@ -36,7 +36,7 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Input Mahasiswa</h3>
+								<h3 class="mb-0">Input Transaksi</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -54,7 +54,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Mahasiswa</h3>
+										<h3 class="card-title">Formulir Transaksi</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -68,12 +68,12 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-input.php" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nim" class="form-label">Nomor Induk Mahasiswa (NIM)</label>
-                                                <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukkan NIM Mahasiswa" required>
+                                                <label for="id" class="form-label">Identifikasi Transaksi (ID)</label>
+                                                <input type="number" class="form-control" id="id" name="id" placeholder="Masukkan Identifikasi Transaksi" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap Mahasiswa" required>
+                                                <label for="kode" class="form-label">Kode Transaksi</label>
+                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Transaksi" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="buah" class="form-label">Data Buah</label>
@@ -88,8 +88,8 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan Alamat Lengkap Sesuai KTP" required></textarea>
+                                                <label for="qty" class="form-label">Quantity</label>
+                                                <textarea class="form-control" id="qty" name="qty" rows="3" placeholder="Masukkan Total Qty" required></textarea>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="pelanggan" class="form-label">Pelanggan</label>
@@ -104,17 +104,17 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Valid dan Benar" required>
+                                                <label for="satuan" class="form-label">Harga Satuan</label>
+                                                <input type="satuan" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Harga Satuan" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="telp" class="form-label">Nomor Telepon</label>
-                                                <input type="tel" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon/HP" pattern="[0-9+\-\s()]{6,20}" required>
+                                                <label for="harga" class="form-label">Total Harga</label>
+                                                <input type="harga" class="form-control" id="harga" name="harga" placeholder="Masukkan Total Harga" pattern="[0-9+\-\s()]{6,20}" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="status" class="form-label">Status</label>
-                                                <select class="form-select" id="status" name="status" required>
-                                                    <option value="" selected disabled>Pilih Status</option>
+                                                <label for="metode" class="form-label">Metode Bayar</label>
+                                                <select class="form-select" id="metode" name="metode" required>
+                                                    <option value="" selected disabled>Pilih Metode Bayar</option>
                                                     <?php 
                                                     // Iterasi daftar status mahasiswa dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($statusList as $status){

@@ -2,6 +2,20 @@
 
 // Silakan lihat komentar di file data-list.php untuk penjelasan kode ini, karena struktur dan logikanya serupa.
 include_once 'config/class-master.php';
+
+// DEBUG CEK
+echo "<pre>";
+echo "File class-master.php di-load dari: " . realpath('config/class-master.php') . "\n";
+if (class_exists('MasterData')) {
+    echo "Kelas MasterData ditemukan!\n";
+    echo "Method yang ada: \n";
+    print_r(get_class_methods('MasterData'));
+} else {
+    echo "⚠️ Kelas MasterData TIDAK ditemukan!";
+}
+echo "</pre>";
+exit;
+
 $master = new MasterData();
 if(isset($_GET['status'])){
 	if($_GET['status'] == 'inputsuccess'){
@@ -70,9 +84,12 @@ $dataBuah = $master->getBuah();
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>No</th>
-													<th>Kode</th>
-													<th>Nama</th>
+													<th>id</th>
+													<th>nama</th>
+													<th>jenis</th>
+													<th>stok</th>
+													<th>harga</th>
+													<th>satuan</th>
 													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
@@ -88,6 +105,10 @@ $dataBuah = $master->getBuah();
 																<td>'.($index + 1).'</td>
 																<td>'.$buah['id'].'</td>
 																<td>'.$buah['nama'].'</td>
+																<td>'.$buah['jenis'].'</td>
+																<td>'.$buah['stok'].'</td>
+																<td>'.$buah['harga'].'</td>
+																<td>'.$buah['satuan'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-buah-edit.php?id='.$buah['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
 																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data buah ini?\')){window.location.href=\'proses/proses-buah.php?aksi=deletebuah&id='.$buah['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
