@@ -45,29 +45,37 @@ class MasterData extends Database {
     }
 
     // Method untuk mendapatkan daftar status mahasiswa menggunakan array statis
-    public function getStatus(){
-        return [
-            ['id' => 1, 'nama' => 'Aktif'],
-            ['id' => 2, 'nama' => 'Tidak Aktif'],
-            ['id' => 3, 'nama' => 'Cuti'],
-            ['id' => 4, 'nama' => 'Lulus']
-        ];
+    public function getMetodePembayaran(){
+    return [
+        ['id' => 1, 'nama' => 'Cash'],
+        ['id' => 2, 'nama' => 'QRIS'],
+        ['id' => 3, 'nama' => 'Transfer']
+    ];
     }
 
+    public function getStatusTrx(){
+    return [
+        ['id' => 1, 'nama' => 'Batal'],
+        ['id' => 2, 'nama' => 'Pending'],
+        ['id' => 3, 'nama' => 'Selesai']
+    ];
+}
+
+
     // Method untuk input data program studi
-    public function inputBuah($data){
-        $idBuah = $data['id'];
-        $namaBuah = $data['nama'];
-        $jenisBuah = $data['jenis'];
-        $stokBuah = $data['stok'];
-        $hargaBuah = $data['harga'];
-        $satuanBuah = $data['satuan'];
+    public function inputBuah($dataBuah){
+        $idBuah = $dataBuah['id'];
+        $namaBuah = $dataBuah['nama'];
+        $jenisBuah = $dataBuah['jenis'];
+        $stok = $dataBuah['stok'];
+        $harga = $dataBuah['harga'];
+        $satuan = $dataBuah['satuan'];
         $query = "INSERT INTO tb_buah (id_buah, nama_buah, jenis_buah, stok, harga, satuan) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
-        $stmt->bind_param("ssssss", $idBuah, $namaBuah, $jenisBuah, $stokBuah, $hargaBuah, $satuanBuah);
+        $stmt->bind_param("ssssss", $idBuah, $namaBuah, $jenisBuah, $stok, $harga, $satuan);
         $result = $stmt->execute();
         $stmt->close();
         return $result;

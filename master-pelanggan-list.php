@@ -70,9 +70,11 @@ $dataPelanggan = $master->getPelanggan();
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>No</th>
-													<th>Nama</th>
-													<th class="text-center">Aksi</th>
+													<th>id_pelanggan</th>
+													<th>nama_pelanggan</th>
+													<th>no_hp</th>
+													<th>alamat</th>
+													<th>email</th>
 												</tr>
 											</thead>
 											<tbody>

@@ -60,12 +60,28 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-databuah.php?aksi=inputdatabuah" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Kode Buah</label>
-                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Data Buah" required>
+                                                <label for="id" class="form-label">Id Buah</label>
+                                                <input type="text" class="form-control" id="id" name="id" placeholder="Masukkan ID Buah" required>
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Buah</label>
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Buah" required>
+											</div>
+											<div class="mb-3">
+												<label for="jenis" class="form-label">Jenis Buah</label>
+												<input type="text" class="form-control" id="jenis" name="jenis" placeholder="Masukkan Jenis buah" required>
+											</div>
+											<div class="mb-3">
+												<label for="stok" class="form-label">Stok</label>
+												<input type="number" class="form-control" id="stok" name="stok" placeholder="Masukkan Stok Buah" required>
+											</div>
+											<div class="mb-3">
+												<label for="harga" class="form-label">Harga</label>
+												<input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Buah" required>
+											</div>
+											<div class="mb-3">
+												<label for="satuan" class="form-label">Satuan</label>
+												<input type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan Buah" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

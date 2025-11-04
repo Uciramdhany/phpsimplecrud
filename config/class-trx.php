@@ -18,14 +18,14 @@ class Trx extends Database {
         $buah   = $data['buah'];
         $status   = $data['status'];
         // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_mahasiswa (id_trx, kode_trx, tgl_trx, pelanggan, total_qty, total_harga, metode_bayar, buah, status_trx) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO tb_trx (id_trx, kode_trx, tgl_trx, pelanggan, total_qty, total_harga, metode_bayar, buah, status_trx) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         // Mengecek apakah statement berhasil disiapkan
         if(!$stmt){
             return false;
         }
         // Memasukkan parameter ke statement
-        $stmt->bind_param("sssssssss", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
+        $stmt->bind_param("isssiisss", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
         $result = $stmt->execute();
         $stmt->close();
         // Mengembalikan hasil eksekusi query
@@ -80,7 +80,7 @@ class Trx extends Database {
             // Mengambil data mahasiswa  
             $row = $result->fetch_assoc();
             // Menyimpan data dalam array
-            $data = [
+            $dataTrx = [
                 'id' => $row['id_trx'],
                 'kode' => $row['kode_trx'],
                 'tgl' => $row['tgl_trx'],

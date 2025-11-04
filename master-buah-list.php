@@ -77,7 +77,6 @@ $dataBuah = $master->getBuah();
 													<th>stok</th>
 													<th>harga</th>
 													<th>satuan</th>
-													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
 											<tbody>

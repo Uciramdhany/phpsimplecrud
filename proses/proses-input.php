@@ -6,13 +6,14 @@ include '../config/class-trx.php';
 $trx = new Trx();
 // Mengambil data mahasiswa dari form input menggunakan metode POST dan menyimpannya dalam array
 $dataTrx = [
-    'nim' => $_POST['nim'],
-    'nama' => $_POST['nama'],
-    'buah' => $_POST['buah'],
-    'alamat' => $_POST['alamat'],
+    'id' => $_POST['id'],
+    'kode' => $_POST['kode'],
+    'tgl' => $_POST['tgl'],
     'pelanggan' => $_POST['pelanggan'],
-    'email' => $_POST['email'],
-    'telp' => $_POST['telp'],
+    'qty' => $_POST['qty'],
+    'harga' => $_POST['harga'],
+    'metode' => $_POST['metode'],
+    'buah' => $_POST['buah'],
     'status' => $_POST['status']
 ];
 // Memanggil method inputMahasiswa untuk memasukkan data mahasiswa dengan parameter array $dataMahasiswa

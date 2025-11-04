@@ -5,11 +5,15 @@ include '../config/class-master.php';
 // Membuat objek dari class MasterData
 $master = new MasterData();
 // Mengecek aksi yang dilakukan berdasarkan parameter GET 'aksi'
-if($_GET['aksi'] == 'inputbuah'){
+if($_GET['aksi'] == 'inputdatabuah'){
     // Mengambil data prodi dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataBuah = [
-        'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
+        'id' => $_POST['id'],
+        'nama' => $_POST['nama'],
+        'jenis' => $_POST['jenis'],
+        'stok' => $_POST['stok'],
+        'harga' => $_POST['harga'],
+        'satuan' => $_POST['satuan']
     ];
     // Memanggil method inputProdi untuk memasukkan data prodi dengan parameter array $dataProdi
     $input = $master->inputBuah($dataBuah);
@@ -24,8 +28,11 @@ if($_GET['aksi'] == 'inputbuah'){
     // Mengambil data prodi dari form edit menggunakan metode POST dan menyimpannya dalam array
     $dataBuah = [
         'id' => $_POST['id'],
-        'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
+        'nama' => $_POST['nama'],
+        'jenis' => $_POST['jenis'],
+        'stok' => $_POST['stok'],
+        'harga' => $_POST['harga'],
+        'satuan' => $_POST['satuan']
     ];
     // Memanggil method updateBuah untuk mengupdate data prodi dengan parameter array $dataProdi
     $update = $master->updateBuah($dataBuah);

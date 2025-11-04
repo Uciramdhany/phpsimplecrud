@@ -9,12 +9,11 @@ $dataTrx = [
     'id' => $_POST['id'],
     'kode' => $_POST['kode'],
     'tgl' => $_POST['tgl'],
-    'pelanggan' => $_POST['pelanggan'],
+    'id_pelanggan' => $_POST['pelanggan'],
     'qty' => $_POST['qty'],
-    'satuan' => $_POST['satuan'],
     'harga' => $_POST['harga'],
     'metode' => $_POST['metode'],
-    'buah' => $_POST['buah']
+    'id_buah' => $_POST['buah']
     'status' => $_POST['status']
 ];
 // Memanggil method editMahasiswa untuk mengupdate data mahasiswa dengan parameter array $dataMahasiswa

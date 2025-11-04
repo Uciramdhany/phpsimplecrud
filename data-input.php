@@ -7,7 +7,9 @@ $buahList = $master->getBuah();
 // Mengambil daftar provinsi
 $pelangganList = $master->getPelanggan();
 // Mengambil daftar status mahasiswa
-$statusList = $master->getStatus();
+$metodeList = $master->getMetodePembayaran();
+$statusList = $master->getStatusTrx();
+
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
 if(isset($_GET['status'])){
     // Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
@@ -87,25 +89,17 @@ if(isset($_GET['status'])){
                                                     ?>
                                                 </select>
                                             </div>
+                                             <div class="mb-3">
+                                                <label for="tgl" class="form-label">tanggal trx</label>
+                                                <textarea class="form-control" id="tgl" name="tgl" rows="3" placeholder="Masukkan Tanggal Transaksi" required></textarea>
+                                            </div>
                                             <div class="mb-3">
-                                                <label for="qty" class="form-label">Quantity</label>
+                                                <label for="nama" class="form-label">Nama Pelanggan</label>
+                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pelanggan" pattern="[0-9+\-\s()]{6,20}" required>
+                                            </div>
+                                             <div class="mb-3">
+                                                <label for="qty" class="form-label">Total Quantity</label>
                                                 <textarea class="form-control" id="qty" name="qty" rows="3" placeholder="Masukkan Total Qty" required></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="pelanggan" class="form-label">Pelanggan</label>
-                                                <select class="form-select" id="pelanggan" name="pelanggan" required>
-                                                    <option value="" selected disabled>Pilih Pelanggan</option>
-                                                    <?php
-                                                    // Iterasi daftar provinsi dan menampilkannya sebagai opsi dalam dropdown
-                                                    foreach ($pelangganList as $pelanggan){
-                                                        echo '<option value="'.$pelanggan['id'].'">'.$pelanggan['nama'].'</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="satuan" class="form-label">Harga Satuan</label>
-                                                <input type="satuan" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Harga Satuan" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="harga" class="form-label">Total Harga</label>
@@ -116,6 +110,20 @@ if(isset($_GET['status'])){
                                                 <select class="form-select" id="metode" name="metode" required>
                                                     <option value="" selected disabled>Pilih Metode Bayar</option>
                                                     <?php 
+                                                    $metodeList = $master->getMetodePembayaran();
+                                                    // Iterasi daftar status mahasiswa dan menampilkannya sebagai opsi dalam dropdown
+                                                    foreach ($metodeList as $metode){
+                                                    echo '<option value="'.$metode['id'].'">'.$metode['nama'].'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="metode" class="form-label">Status Transaksi</label>
+                                                <select class="form-select" id="metode" name="metode" required>
+                                                    <option value="" selected disabled>Pilih Status Transaksi</option>
+                                                    <?php 
+                                                    $statusList = $master->getStatusTrx();
                                                     // Iterasi daftar status mahasiswa dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($statusList as $status){
                                                         echo '<option value="'.$status['id'].'">'.$status['nama'].'</option>';
