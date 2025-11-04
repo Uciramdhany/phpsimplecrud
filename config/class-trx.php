@@ -35,10 +35,11 @@ class Trx extends Database {
     // Method untuk mengambil semua data mahasiswa
     public function getAllTrx(){
         // Menyiapkan query SQL untuk mengambil data mahasiswa beserta prodi dan provinsi
-        $query = "SELECT id_trx, kode_trx, tgl_trx, nama_pelanggan, total_qty, total_harga, metode_bayar, nama_buah, status_trx 
-                  FROM tb_trx
-                  JOIN tb_buah ON buah = id_buah
-                  JOIN tb_pelanggan ON pelanggan = id_pelanggan";
+        $query = "SELECT t.id_trx, t.kode_trx, t.tgl_trx, p.nama_pelanggan, 
+                 t.total_qty, t.total_harga, t.metode_bayar, b.nama_buah, t.status_trx 
+          FROM tb_trx AS t
+          JOIN tb_buah AS b ON t.id_buah = b.id_buah
+          JOIN tb_pelanggan AS p ON t.id_pelanggan = p.id_pelanggan";
         $result = $this->conn->query($query);
         // Menyiapkan array kosong untuk menyimpan data mahasiswa
         $trx = [];

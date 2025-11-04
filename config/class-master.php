@@ -100,7 +100,7 @@ class MasterData extends Database {
     }
 
     // Method untuk mengedit data program studi
-    public function getUpdateBuah($data){
+    public function updateBuah($data){
         $idBuah = $data['id'];
         $namaBuah = $data['nama'];
         $jenisBuah = $data['jenis'];

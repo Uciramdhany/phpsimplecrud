@@ -1,5 +1,5 @@
 .app-header {
-  background: linear-gradient(90deg, #b1fd7f, #29994c);
+  background: linear-gradient(90deg, #b1fd7f, #ff0000);
   color: white;
 }
 
@@ -13,3 +13,6 @@
   font-size: 1.2rem;
 }
 
+.bg-body-secondary {
+    background-color: rgb(184, 147, 83)!important;
+}

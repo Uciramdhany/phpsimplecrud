@@ -3,19 +3,6 @@
 // Silakan lihat komentar di file data-list.php untuk penjelasan kode ini, karena struktur dan logikanya serupa.
 include_once 'config/class-master.php';
 
-// DEBUG CEK
-echo "<pre>";
-echo "File class-master.php di-load dari: " . realpath('config/class-master.php') . "\n";
-if (class_exists('MasterData')) {
-    echo "Kelas MasterData ditemukan!\n";
-    echo "Method yang ada: \n";
-    print_r(get_class_methods('MasterData'));
-} else {
-    echo "⚠️ Kelas MasterData TIDAK ditemukan!";
-}
-echo "</pre>";
-exit;
-
 $master = new MasterData();
 if(isset($_GET['status'])){
 	if($_GET['status'] == 'inputsuccess'){
@@ -102,7 +89,6 @@ $dataBuah = $master->getBuah();
 													} else {
 														foreach ($dataBuah as $index => $buah){
 															echo '<tr class="align-middle">
-																<td>'.($index + 1).'</td>
 																<td>'.$buah['id'].'</td>
 																<td>'.$buah['nama'].'</td>
 																<td>'.$buah['jenis'].'</td>
