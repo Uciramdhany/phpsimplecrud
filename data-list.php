@@ -89,13 +89,13 @@ $dataTrx = $trx->getAllTrx();
 														</tr>';
 													} else {
 														foreach ($dataTrx as $index => $trx){
-															if($trx['status'] == 1){
-															    $trx['status'] = '<span class="badge bg-success">batal</span>';
-															} elseif($trx['status'] == 2){
-															    $trx['status'] = '<span class="badge bg-danger">pending</span>';
-															} elseif($trx['status'] == 3){
-															    $trx['status'] = '<span class="badge bg-warning text-dark">selesai</span>';
-															} 
+															if ($trx['status'] == 1) {
+																$statusBadge = '<span class="badge bg-danger">Batal</span>';
+															} elseif ($trx['status'] == 2) {
+																$statusBadge = '<span class="badge bg-warning text-dark">Pending</span>';
+															} elseif ($trx['status'] == 3) {
+																$statusBadge = '<span class="badge bg-success">Selesai</span>';
+															}
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
 																<td>'.$trx['nama_buah'].'</td>
@@ -107,7 +107,7 @@ $dataTrx = $trx->getAllTrx();
 																<td>'.$trx['status'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$trx['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$trx['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data Transaksi ini?\')){window.location.href=\'proses/proses-delete.php?id='.$trx['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}

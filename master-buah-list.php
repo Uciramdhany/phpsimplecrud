@@ -80,29 +80,37 @@ $dataBuah = $master->getBuah();
 												</tr>
 											</thead>
 											<tbody>
-												<?php
-													if(count($dataBuah) == 0){
-													    echo '<tr class="align-middle">
-															<td colspan="4" class="text-center">Tidak ada data buah.</td>
-														</tr>';
-													} else {
-														foreach ($dataBuah as $index => $buah){
-															echo '<tr class="align-middle">
-																<td>'.$buah['id'].'</td>
-																<td>'.$buah['nama'].'</td>
-																<td>'.$buah['jenis'].'</td>
-																<td>'.$buah['stok'].'</td>
-																<td>'.$buah['harga'].'</td>
-																<td>'.$buah['satuan'].'</td>
-																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-buah-edit.php?id='.$buah['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data buah ini?\')){window.location.href=\'proses/proses-buah.php?aksi=deletebuah&id='.$buah['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
-																</td>
-															</tr>';
-														}
-													}
-												?>
+											<?php if (count($dataBuah) == 0): ?>
+    											<tr class="align-middle">
+        											<td colspan="7" class="text-center">Tidak ada data buah.</td>
+    											</tr>
+											<?php else: ?>
+    											<?php foreach ($dataBuah as $buah): ?>
+        											<tr class="align-middle">
+														<td><?= $buah['id']; ?></td>
+														<td><?= $buah['nama']; ?></td>
+														<td><?= $buah['jenis']; ?></td>
+														<td><?= $buah['stok']; ?></td>
+														<td><?= $buah['harga']; ?></td>
+														<td><?= $buah['satuan']; ?></td>
+														<td class="text-center">
+															<button type="button" class="btn btn-sm btn-warning me-1" 
+																onclick="window.location.href='master-buah-edit.php?id=<?= $buah['id']; ?>'">
+																<i class="bi bi-pencil-fill"></i> Edit
+															</button>
+															<button type="button" class="btn btn-sm btn-danger" 
+																onclick="if(confirm('Yakin ingin menghapus data buah ini?')) {
+																	window.location.href='proses/proses-databuah.php?aksi=deletebuah&id=<?php echo $buah['id']; ?>';
+																}">
+																<i class="bi bi-trash-fill"></i> Hapus
+															</button>
+
+														</td>
+													</tr>
+												<?php endforeach; ?>
+											<?php endif; ?>
 											</tbody>
+
 										</table>
 									</div>
 									<div class="card-footer">

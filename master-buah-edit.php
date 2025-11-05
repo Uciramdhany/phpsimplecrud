@@ -31,12 +31,12 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Edit Program Studi</h3>
+								<h3 class="mb-0">Edit Data Buah</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Prodi</li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Buah</li>
 								</ol>
 							</div>
 						</div>
@@ -48,7 +48,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Program Studi</h3>
+										<h3 class="card-title">Formulir Data Buah</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -59,15 +59,31 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
-                                    <form action="proses/proses-databuah.php?aksi=updatebuah" method="POST">
+                                    <form action="proses/proses-databuah.php?aksi=updatedatabuah" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
                                                 <label for="nama" class="form-label">Kode buah</label>
-                                                <input type="text" class="form-control-plaintext" id="kode" name="kode" placeholder="Masukkan Kode Data Buah" value="<?php echo $dataBuah['id']; ?>" required readonly>
+                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Data Buah" value="<?php echo $dataBuah['id']; ?>" required>
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama buah</label>
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Buah" value="<?php echo $dataBuah['nama']; ?>" required>
+											</div>
+											<div class="mb-3">
+												<label for="jenis" class="form-label">Jenis buah</label>
+												<input type="text" class="form-control" id="jenis" name="jenis" placeholder="Masukkan Jenis Buah" value="<?php echo $dataBuah['jenis']; ?>" required>
+											</div>
+											<div class="mb-3">
+												<label for="stok" class="form-label">Stok</label>
+												<input type="text" class="form-control" id="stok" name="stok" placeholder="Masukkan Stok Buah" value="<?php echo $dataBuah['stok']; ?>" required>
+											</div>
+											<div class="mb-3">
+												<label for="harga" class="form-label">Harga</label>
+												<input type="text" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Buah" value="<?php echo $dataBuah['harga']; ?>" required>
+											</div>
+											<div class="mb-3">
+												<label for="satuan" class="form-label">Satuan</label>
+												<input type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan Buah" value="<?php echo $dataBuah['satuan']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

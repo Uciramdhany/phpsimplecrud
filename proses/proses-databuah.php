@@ -6,53 +6,43 @@ include '../config/class-master.php';
 $master = new MasterData();
 // Mengecek aksi yang dilakukan berdasarkan parameter GET 'aksi'
 if($_GET['aksi'] == 'inputdatabuah'){
-    // Mengambil data prodi dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataBuah = [
-        'id' => $_POST['id'],
+        'id' => $_POST['kode'],
         'nama' => $_POST['nama'],
         'jenis' => $_POST['jenis'],
         'stok' => $_POST['stok'],
         'harga' => $_POST['harga'],
         'satuan' => $_POST['satuan']
     ];
-    // Memanggil method inputProdi untuk memasukkan data prodi dengan parameter array $dataProdi
+
     $input = $master->inputBuah($dataBuah);
     if($input){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status inputsuccess
         header("Location: ../master-buah-list.php?status=inputsuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-input.php dengan status failed
         header("Location: ../master-buah-input.php?status=failed");
     }
-} elseif($_GET['aksi'] == 'updatedatabuah'){
-    // Mengambil data prodi dari form edit menggunakan metode POST dan menyimpannya dalam array
+}elseif($_GET['aksi'] == 'updatedatabuah'){
     $dataBuah = [
-        'id' => $_POST['id'],
+        'id' => $_POST['kode'],
         'nama' => $_POST['nama'],
         'jenis' => $_POST['jenis'],
         'stok' => $_POST['stok'],
         'harga' => $_POST['harga'],
         'satuan' => $_POST['satuan']
     ];
-    // Memanggil method updateBuah untuk mengupdate data prodi dengan parameter array $dataProdi
+
     $update = $master->updateBuah($dataBuah);
     if($update){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status editsuccess
         header("Location: ../master-buah-list.php?status=editsuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-edit.php dengan status failed dan membawa id prodi
         header("Location: ../master-buah-edit.php?id=".$dataBuah['id']."&status=failed");
     }
 } elseif($_GET['aksi'] == 'deletebuah'){
-    // Mengambil id prodi dari parameter GET
     $id = $_GET['id'];
-    // Memanggil method deleteProdi untuk menghapus data prodi berdasarkan id
     $delete = $master->deleteBuah($id);
     if($delete){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status deletesuccess
         header("Location: ../master-buah-list.php?status=deletesuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-list.php dengan status deletefailed
         header("Location: ../master-buah-list.php?status=deletefailed");
     }
 }

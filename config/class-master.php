@@ -54,9 +54,9 @@ class MasterData extends Database {
 
     public function getStatusTrx(){
     return [
-        ['id' => 1, 'nama' => 'Batal'],
+        ['id' => 3, 'nama' => 'Batal'],
         ['id' => 2, 'nama' => 'Pending'],
-        ['id' => 3, 'nama' => 'Selesai']
+        ['id' => 1, 'nama' => 'Selesai']
     ];
 }
 
@@ -107,23 +107,31 @@ class MasterData extends Database {
     }
 
     // Method untuk mengedit data program studi
-    public function updateBuah($data){
-        $idBuah = $data['id'];
-        $namaBuah = $data['nama'];
-        $jenisBuah = $data['jenis'];
-        $stokBuah = $data['stok'];
-        $hargaBuah = $data['harga'];
-        $satuanBuah = $data['satuan'];
-        $query = "UPDATE tb_buah SET nama_buah = ? WHERE id_buah = ?";
-        $stmt = $this->conn->prepare($query);
-        if(!$stmt){
-            return false;
-        }
-        $stmt->bind_param("ss", $namaBuah, $idBuah);
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
+public function updateBuah($data){
+    $idBuah = $data['id'];
+    $namaBuah = $data['nama'];
+    $jenisBuah = $data['jenis'];
+    $stokBuah = $data['stok'];
+    $hargaBuah = $data['harga'];
+    $satuanBuah = $data['satuan'];
+
+    $query = "UPDATE tb_buah 
+              SET nama_buah = ?, jenis_buah = ?, stok = ?, harga = ?, satuan = ? 
+              WHERE id_buah = ?";
+
+    $stmt = $this->conn->prepare($query);
+    if(!$stmt){
+        return false;
     }
+
+    // Bind semua parameter (6 total)
+    $stmt->bind_param("ssssss", $namaBuah, $jenisBuah, $stokBuah, $hargaBuah, $satuanBuah, $idBuah);
+    $result = $stmt->execute();
+    $stmt->close();
+
+    return $result;
+}
+
 
     // Method untuk menghapus data program studi
     public function deleteBuah($id){

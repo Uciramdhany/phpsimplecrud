@@ -92,7 +92,7 @@ $dataPelanggan = $master->getPelanggan();
 																<td>'.$pelanggan['email'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-pelanggan-edit.php?id='.$pelanggan['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data program studi ini?\')){window.location.href=\'proses/proses-pelanggan.php?aksi=deletepelanggan&id='.$pelanggan['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data pelanggan ini?\')){window.location.href=\'proses/proses-pelanggan.php?aksi=deletepelanggan&id='.$pelanggan['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}

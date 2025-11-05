@@ -60,8 +60,9 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-databuah.php?aksi=inputdatabuah" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="id" class="form-label">Id Buah</label>
-                                                <input type="text" class="form-control" id="id" name="id" placeholder="Masukkan ID Buah" required>
+                                                <label for="id" class="form-label">ID Buah</label>
+												<input type="text" class="form-control-plaintext" id="id" name="id" 
+    											value="<?php echo $dataBuah['id']; ?>" readonly>
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Buah</label>
@@ -80,8 +81,9 @@ if(isset($_GET['status'])){
 												<input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Buah" required>
 											</div>
 											<div class="mb-3">
-												<label for="satuan" class="form-label">Satuan</label>
-												<input type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan Buah" required>
+    											<label for="satuan" class="form-label">Satuan</label>
+    											<input type="text" class="form-control" id="satuan" name="satuan" 
+        										value="<?php echo $dataBuah['satuan']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">
