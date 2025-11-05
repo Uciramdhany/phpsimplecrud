@@ -17,6 +17,7 @@ if(isset($_GET['status'])){
 $dataPelanggan = $master->getPelanggan();
 
 ?>
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -70,24 +71,25 @@ $dataPelanggan = $master->getPelanggan();
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>id_pelanggan</th>
-													<th>nama_pelanggan</th>
-													<th>no_hp</th>
-													<th>alamat</th>
-													<th>email</th>
+													<th>Id pelanggan</th>
+													<th>Nama Pelanggan</th>
+													<th>NO HP</th>
+													<th>Email</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
 													if(count($dataPelanggan) == 0){
 													    echo '<tr class="align-middle">
-															<td colspan="3" class="text-center">Tidak ada data pelanggan.</td>
+															<td colspan="6" class="text-center">Tidak ada data pelanggan.</td>
 														</tr>';
 													} else {
 														foreach ($dataPelanggan as $index => $pelanggan){
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
 																<td>'.$pelanggan['nama'].'</td>
+																<td>'.$pelanggan['no_hp'].'</td>
+																<td>'.$pelanggan['email'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-pelanggan-edit.php?id='.$pelanggan['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
 																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data program studi ini?\')){window.location.href=\'proses/proses-pelanggan.php?aksi=deletepelanggan&id='.$pelanggan['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>

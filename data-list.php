@@ -56,7 +56,7 @@ $dataTrx = $trx->getAllTrx();
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Tabel Mahasiswa</h3>
+										<h3 class="card-title">Tabel Data Transaksi</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -71,18 +71,14 @@ $dataTrx = $trx->getAllTrx();
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>id</th>
-													<th>kode</th>
-													<th>tgl</th>
-													<th>pelanggan</th>
-													<th>qty</th>
-													<th>satuan</th>
-													<th>harga</th>
-													<th>metode</th>
-													<th>buah</th>
-													<th>status</th>
-													<th class="text-center">Status</th>
-													<th class="text-center">Aksi</th>
+													<th>Kode</th>
+													<th>Data Buah</th>
+													<th>Tanggal Transaksi</th>
+													<th>Nama Pelanggan</th>
+													<th>Total Quantity</th>
+													<th>Total harga</th>
+													<th>Metode Bayar</th>
+													<th>Status Transaksi</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -94,27 +90,21 @@ $dataTrx = $trx->getAllTrx();
 													} else {
 														foreach ($dataTrx as $index => $trx){
 															if($trx['status'] == 1){
-															    $trx['status'] = '<span class="badge bg-success">Aktif</span>';
+															    $trx['status'] = '<span class="badge bg-success">batal</span>';
 															} elseif($trx['status'] == 2){
-															    $trx['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+															    $trx['status'] = '<span class="badge bg-danger">pending</span>';
 															} elseif($trx['status'] == 3){
-															    $trx['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-															} elseif($trx['status'] == 4){
-															    $trx['status'] = '<span class="badge bg-primary">Lulus</span>';
+															    $trx['status'] = '<span class="badge bg-warning text-dark">selesai</span>';
 															} 
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
-																<td>'.$trx['id'].'</td>
-																<td>'.$trx['kode'].'</td>
-																<td>'.$trx['tgl'].'</td>
-																<td>'.$trx['pelanggan'].'</td>
+																<td>'.$trx['nama_buah'].'</td>
+																<td>'.$trx['tgl_trx'].'</td>
+																<td>'.$trx['nama_pelanggan'].'</td>
 																<td>'.$trx['qty'].'</td>
-																<td>'.$trx['satuan'].'</td>
 																<td>'.$trx['harga'].'</td>
 																<td>'.$trx['metode'].'</td>
-																<td>'.$trx['buah'].'</td>
 																<td>'.$trx['status'].'</td>
-																<td class="text-center">'.$trx['status'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$trx['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
 																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$trx['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>

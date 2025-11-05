@@ -69,11 +69,7 @@ if(isset($_GET['status'])){
 									</div>
                                     <form action="proses/proses-edit.php" method="POST">
 									    <div class="card-body">
-                                            <input type="hidden" name="id" value="<?php echo $dataTrx['id']; ?>">
-                                            <div class="mb-3">
-                                                <label for="nim" class="form-label">Identifikasi Transaksi (ID)</label>
-                                                <input type="number" class="form-control" id="id" name="id" placeholder="Masukkan ID Transaksi" value="<?php echo $dataTrx['id']; ?>" required>
-                                            </div>
+                                            <input type="hidden" name="kode" value="<?php echo $dataTrx['kode']; ?>">
                                             <div class="mb-3">
                                                 <label for="nama" class="form-label">Kode Transaksi</label>
                                                 <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Transaksi" value="<?php echo $dataTrx['kode']; ?>" required>

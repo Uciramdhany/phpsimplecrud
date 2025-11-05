@@ -1,30 +1,22 @@
 <?php
-
-// Memasukkan file class-mahasiswa.php untuk mengakses class Mahasiswa
-include '../config/class-trx.php';
-// Membuat objek dari class Mahasiswa
+include_once '../config/class-trx.php';
 $trx = new Trx();
-// Mengambil data mahasiswa dari form input menggunakan metode POST dan menyimpannya dalam array
-$dataTrx = [
-    'id' => $_POST['id'],
+
+$data = [
     'kode' => $_POST['kode'],
     'tgl' => $_POST['tgl'],
-    'pelanggan' => $_POST['pelanggan'],
+    'id_pelanggan' => $_POST['id_pelanggan'],
+    'id_buah' => $_POST['id_buah'],
     'qty' => $_POST['qty'],
     'harga' => $_POST['harga'],
     'metode' => $_POST['metode'],
-    'buah' => $_POST['buah'],
     'status' => $_POST['status']
 ];
-// Memanggil method inputMahasiswa untuk memasukkan data mahasiswa dengan parameter array $dataMahasiswa
-$input = $trx->inputTrx($dataTrx);
-// Mengecek apakah proses input berhasil atau tidak - true/false
-if($input){
-    // Jika berhasil, redirect ke halaman data-list.php dengan status inputsuccess
+
+$result = $trx->inputTrx($data);
+
+if($result){
     header("Location: ../data-list.php?status=inputsuccess");
 } else {
-    // Jika gagal, redirect ke halaman data-input.php dengan status failed
     header("Location: ../data-input.php?status=failed");
 }
-
-?>

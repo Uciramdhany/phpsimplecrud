@@ -70,33 +70,28 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-input.php" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="id" class="form-label">Identifikasi Transaksi (ID)</label>
-                                                <input type="number" class="form-control" id="id" name="id" placeholder="Masukkan Identifikasi Transaksi" required>
-                                            </div>
-                                            <div class="mb-3">
                                                 <label for="kode" class="form-label">Kode Transaksi</label>
                                                 <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Transaksi" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="buah" class="form-label">Data Buah</label>
-                                                <select class="form-select" id="buah" name="buah" required>
+                                                <select class="form-select" id="buah" name="id_buah" required>
                                                     <option value="" selected disabled>Pilih Buah</option>
-                                                    <?php 
-                                                    // Iterasi daftar buah dan menampilkannya sebagai opsi dalam dropdown
-                                                    foreach ($buahList as $buah){
-                                                        echo '<option value="'.$buah['id'].'">'.$buah['nama'].'</option>';
-                                                    }
-                                                    ?>
+                                                    <?php foreach ($buahList as $buah){
+                                                    echo '<option value="'.$buah['id'].'">'.$buah['nama'].'</option>';
+                                                    } ?>
                                                 </select>
                                             </div>
                                              <div class="mb-3">
                                                 <label for="tgl" class="form-label">tanggal trx</label>
                                                 <textarea class="form-control" id="tgl" name="tgl" rows="3" placeholder="Masukkan Tanggal Transaksi" required></textarea>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="nama" class="form-label">Nama Pelanggan</label>
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pelanggan" pattern="[0-9+\-\s()]{6,20}" required>
-                                            </div>
+                                            <select class="form-select" id="pelanggan" name="id_pelanggan" required>
+                                                <option value="" selected disabled>Pilih Pelanggan</option>
+                                                <?php foreach ($pelangganList as $pelanggan){
+                                                echo '<option value="'.$pelanggan['id'].'">'.$pelanggan['nama'].'</option>';
+                                                } ?>
+                                            </select>
                                              <div class="mb-3">
                                                 <label for="qty" class="form-label">Total Quantity</label>
                                                 <textarea class="form-control" id="qty" name="qty" rows="3" placeholder="Masukkan Total Qty" required></textarea>
@@ -119,8 +114,8 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="metode" class="form-label">Status Transaksi</label>
-                                                <select class="form-select" id="metode" name="metode" required>
+                                                <label for="status" class="form-label">Status Transaksi</label>
+                                                <select class="form-select" id="status" name="status" required>
                                                     <option value="" selected disabled>Pilih Status Transaksi</option>
                                                     <?php 
                                                     $statusList = $master->getStatusTrx();

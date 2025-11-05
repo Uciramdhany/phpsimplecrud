@@ -65,7 +65,21 @@ if(isset($_GET['status'])){
                                             <input type="hidden" name="id" value="<?php echo $dataPelanggan['id']; ?>">
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Pelanggan</label>
-												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Program Studi" value="<?php echo $dataPelanggan['nama']; ?>" required>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pelanggan value="<?php echo $dataPelanggan['nama']; ?>" required>
+											</div>
+                                        </div>
+										<div class="card-body">
+                                            <input type="hidden" name="id" value="<?php echo $dataPelanggan['id']; ?>">
+											<div class="mb-3">
+												<label for="no_hp" class="form-label">No HP</label>
+												<input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan NO HP value="<?php echo $dataPelanggan['nama']; ?>" required>
+											</div>
+                                        </div>
+										<div class="card-body">
+                                            <input type="hidden" name="id" value="<?php echo $dataPelanggan['id']; ?>">
+											<div class="mb-3">
+												<label for="email" class="form-label">Email</label>
+												<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email value="<?php echo $dataPelanggan['nama']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

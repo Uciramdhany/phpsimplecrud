@@ -94,17 +94,13 @@ if(isset($_GET['search'])){
 													<thead>
 														<tr>
 															<th>id</th>
-															<th>kode</th>
+															<th>buah</th>
 															<th>tgl</th>
 															<th>pelanggan</th>
 															<th>qty</th>
-															<th>satuan</th>
 															<th>harga</th>
 															<th>metode</th>
-															<th>buah</th>
 															<th>status</th>
-															<th class="text-center">Status</th>
-															<th class="text-center">Aksi</th>
 														</tr>
 													</thead>
 													<tbody>';
@@ -112,28 +108,22 @@ if(isset($_GET['search'])){
 													foreach ($cariTrx as $index => $trx){
 														// Mengubah status mahasiswa menjadi badge dengan warna yang sesuai
 														if($trx['status'] == 1){
-															$trx['status'] = '<span class="badge bg-success">Aktif</span>';
+															$trx['status'] = '<span class="badge bg-success">Batal</span>';
 														} elseif($trx['status'] == 2){
-															$trx['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+															$trx['status'] = '<span class="badge bg-danger">Pending</span>';
 														} elseif($trx['status'] == 3){
-															$trx['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-														} elseif($trx['status'] == 4){
-															$trx['status'] = '<span class="badge bg-primary">Lulus</span>';
+															$trx['status'] = '<span class="badge bg-warning text-dark">Selesai</span>';
 														} 
 														// Menampilkan baris data mahasiswa dalam tabel
 														echo '<tr class="align-middle">
 															<td>'.($index + 1).'</td>
-															<td>'.$trx['id'].'</td>
-															<td>'.$trx['kode'].'</td>
+															<td>'.$trx['nama_buah'].'</td>
 															<td>'.$trx['tgl'].'</td>
-															<td>'.$trx['pelanggan'].'</td>
+															<td>'.$trx['nama_pelanggan'].'</td>
 															<td>'.$trx['qty'].'</td>
-															<td>'.$trx['satuan'].'</td>
 															<td>'.$trx['harga'].'</td>
 															<td>'.$trx['metode'].'</td>
-															<td>'.$trx['buah'].'</td>
 															<td>'.$trx['status'].'</td>
-															<td class="text-center">'.$trx['status'].'</td>
 															<td class="text-center">
 																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$trx['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
 																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data transaksi ini?\')){window.location.href=\'proses/proses-delete.php?id='.$trx['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>

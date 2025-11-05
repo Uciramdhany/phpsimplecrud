@@ -35,9 +35,8 @@ class MasterData extends Database {
                 $pelanggan[] = [
                     'id' => $row['id_pelanggan'],
                     'nama' => $row['nama_pelanggan'],
-                    'no' => $row['no_hp'],
-                    'alm' => $row['alamat'],
-                    'eml' => $row['email']
+                    'no_hp' => $row['no_hp'],
+                    'email' => $row['email']
                 ];
             }
         }
@@ -141,16 +140,21 @@ class MasterData extends Database {
 
     // Method untuk input data pelanggan
     public function inputPelanggan($data){
-        $namaPelanggan = $data['nama'];
-        $query = "INSERT INTO tb_pelanggan (nama_pelanggan) VALUES (?)";
-        $stmt = $this->conn->prepare($query);
-        if(!$stmt){
-            return false;
-        }
-        $stmt->bind_param("s", $namaPelanggan);
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
+    $nama = $data['nama'];
+    $no_hp = $data['no_hp'];
+    $email = $data['email'];
+
+    $query = "INSERT INTO tb_pelanggan (nama_pelanggan, no_hp, email)
+              VALUES (?, ?, ?)";
+    $stmt = $this->conn->prepare($query);
+    if(!$stmt){
+        return false;
+    }
+    // gunakan variabel yang benar
+    $stmt->bind_param("sss", $nama, $no_hp, $email);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
     }
 
     // Method untuk mendapatkan data provinsi berdasarkan id
@@ -170,8 +174,7 @@ class MasterData extends Database {
                 'id' => $row['id_pelanggan'],
                 'nama' => $row['nama_pelanggan'],
                 'no' => $row['no_hp'],
-                'alm' => $row['alamat'],
-                'eml' => $row['email']
+                'email' => $row['email']
             ];
         }
         $stmt->close();
@@ -180,21 +183,23 @@ class MasterData extends Database {
 
     // Method untuk mengedit data pelanggan
     public function updatePelanggan($data){
-        $idPelanggan = $data['id'];
-        $namaPelanggan = $data['nama'];
-        $nohpPelanggan = $data['no_hp'];
-        $alamatPelanggan = $data['alamat'];
-        $emailPelanggan = $data['email'];
-        $query = "UPDATE tb_pelanggan SET nama_pelanggan = ? WHERE id_pelanggan = ?";
-        $stmt = $this->conn->prepare($query);
-        if(!$stmt){
-            return false;
-        }
-        $stmt->bind_param("si", $namaPelanggan, $idPelanggan);
-        $result = $stmt->execute();
-        $stmt->close();
-        return $result;
+    $id = $data['id'];
+    $nama = $data['nama'];
+    $no_hp = $data['no_hp'];
+    $email = $data['email'];
+
+    $query = "UPDATE tb_pelanggan SET nama_pelanggan = ?, no_hp = ?, email = ? WHERE id_pelanggan = ?";
+    $stmt = $this->conn->prepare($query);
+    if(!$stmt){
+        return false;
     }
+    // urutan param sesuai query: nama, no_hp, email, id
+    $stmt->bind_param("sssi", $nama, $no_hp, $email, $id);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
+    }
+
 
     // Method untuk menghapus data pelanggan
     public function deletePelanggan($id){

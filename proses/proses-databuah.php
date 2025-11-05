@@ -24,7 +24,7 @@ if($_GET['aksi'] == 'inputdatabuah'){
         // Jika gagal, redirect ke halaman master-prodi-input.php dengan status failed
         header("Location: ../master-buah-input.php?status=failed");
     }
-} elseif($_GET['aksi'] == 'updatebuah'){
+} elseif($_GET['aksi'] == 'updatedatabuah'){
     // Mengambil data prodi dari form edit menggunakan metode POST dan menyimpannya dalam array
     $dataBuah = [
         'id' => $_POST['id'],

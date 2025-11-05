@@ -6,63 +6,56 @@ include_once 'db-config.php';
 class Trx extends Database {
 
     // Method untuk input data mahasiswa
-    public function inputTrx($data){
-        // Mengambil data dari parameter $data
-        $id      = $data['id'];
-        $kode     = $data['kode'];
-        $tgl    = $data['tgl'];
-        $pelanggan   = $data['pelanggan'];
-        $qty = $data['qty'];
-        $harga     = $data['harga'];
-        $metode   = $data['metode'];
-        $buah   = $data['buah'];
-        $status   = $data['status'];
-        // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_trx (id_trx, kode_trx, tgl_trx, pelanggan, total_qty, total_harga, metode_bayar, buah, status_trx) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        // Mengecek apakah statement berhasil disiapkan
-        if(!$stmt){
-            return false;
-        }
-        // Memasukkan parameter ke statement
-        $stmt->bind_param("isssiisss", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
-        $result = $stmt->execute();
-        $stmt->close();
-        // Mengembalikan hasil eksekusi query
-        return $result;
-    }
+public function inputTrx($data){
+    $kode   = $data['kode'];
+    $tgl    = $data['tgl']; 
+    $id_pelanggan = $data['id_pelanggan'];
+    $id_buah = $data['id_buah'];
+    $qty    = $data['qty'];
+    $harga  = $data['harga'];
+    $metode = $data['metode'];
+    $status = $data['status'];
+
+    $query = "INSERT INTO tb_trx (kode_trx, tgl_trx, id_pelanggan, id_buah, total_qty, total_harga, metode_bayar, status_trx)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bind_param("ssiiidss", $kode, $tgl, $id_pelanggan, $id_buah, $qty, $harga, $metode, $status);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
+}
 
     // Method untuk mengambil semua data mahasiswa
     public function getAllTrx(){
-        // Menyiapkan query SQL untuk mengambil data mahasiswa beserta prodi dan provinsi
-        $query = "SELECT t.id_trx, t.kode_trx, t.tgl_trx, p.nama_pelanggan, 
-                 t.total_qty, t.total_harga, t.metode_bayar, b.nama_buah, t.status_trx 
-          FROM tb_trx AS t
-          JOIN tb_buah AS b ON t.id_buah = b.id_buah
-          JOIN tb_pelanggan AS p ON t.id_pelanggan = p.id_pelanggan";
-        $result = $this->conn->query($query);
-        // Menyiapkan array kosong untuk menyimpan data mahasiswa
-        $trx = [];
-        // Mengecek apakah ada data yang ditemukan
-        if($result->num_rows > 0){
-            // Mengambil setiap baris data dan memasukkannya ke dalam array
-            while($row = $result->fetch_assoc()) {
-                $trx[] = [
-                    'id' => $row['id_trx'],
-                    'kode' => $row['kode_trx'],
-                    'tgl' => $row['tgl_trx'],
-                    'pelanggan' => $row['nama_pelanggan'],
-                    'qty' => $row['total_qty'],
-                    'harga' => $row['total_harga'],
-                    'metode' => $row['metode_bayar'],
-                    'buah' => $row['nama_buah'],
-                    'status' => $row['status_trx']
-                ];
-            }
+    $query = "SELECT t.id_trx, t.kode_trx, t.tgl_trx, t.id_pelanggan, t.id_buah, t.total_qty, t.total_harga, t.metode_bayar, t.status_trx,
+                     b.nama_buah, p.nama_pelanggan
+              FROM tb_trx AS t
+              JOIN tb_buah AS b ON t.id_buah = b.id_buah
+              JOIN tb_pelanggan AS p ON t.id_pelanggan = p.id_pelanggan";
+
+    $result = $this->conn->query($query);
+    $trx = [];
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){
+            $trx[] = [
+                'id' => $row['id_trx'],
+                'kode' => $row['kode_trx'],
+                'tgl_trx' => $row['tgl_trx'],
+                'qty' => $row['total_qty'],
+                'harga' => $row['total_harga'],
+                'metode' => $row['metode_bayar'],
+                'status' => $row['status_trx'],
+                'id_buah' => $row['id_buah'],
+                'id_pelanggan' => $row['id_pelanggan'],
+                'nama_buah' => $row['nama_buah'],
+                'nama_pelanggan' => $row['nama_pelanggan']
+            ];
         }
-        // Mengembalikan array data mahasiswa
-        return $trx;
     }
+    return $trx;
+    }
+
 
     // Method untuk mengambil data mahasiswa berdasarkan ID
     public function getUpdateTrx($id){
@@ -84,11 +77,11 @@ class Trx extends Database {
                 'id' => $row['id_trx'],
                 'kode' => $row['kode_trx'],
                 'tgl' => $row['tgl_trx'],
-                'pelanggan' => $row['nama_pelanggan'],
+                'id_pelanggan' => $row['id_pelanggan'],
                 'qty' => $row['total_qty'],
                 'harga' => $row['total_harga'],
                 'metode' => $row['metode_bayar'],
-                'buah' => $row['nama_buah'],
+                'id_buah' => $row['id_buah'],
                 'status' => $row['status_trx']
             ];
         }
@@ -103,20 +96,20 @@ class Trx extends Database {
         $id      = $data['id'];
         $kode     = $data['kode'];
         $tgl    = $data['tgl'];
-        $pelanggan   = $data['pelanggan'];
+        $id_pelanggan   = $data['id_pelanggan'];
         $qty = $data['qty'];
         $harga     = $data['harga'];
         $metode   = $data['metode'];
-        $buah   = $data['buah'];
+        $id_buah   = $data['id_buah'];
         $status   = $data['status'];
         // Menyiapkan query SQL untuk update data menggunakan prepared statement
-        $query = "UPDATE tb_trx SET id_trx = ?, kode_trx = ?, tgl_trx = ?, pelanggan = ?, total_qty = ?, harga_satuan = ?, total_harga = ?, metode_bayar = ?, buah = ?, status_trx = ? WHERE id_trx = ?";
+        $query = "UPDATE tb_trx SET id_trx = ?, kode_trx = ?, tgl_trx = ?, id_pelanggan = ?, total_qty = ?, harga_satuan = ?, total_harga = ?, metode_bayar = ?, id_buah = ?, status_trx = ? WHERE id_trx = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
         // Memasukkan parameter ke statement
-        $stmt->bind_param("sssssssssi", $id, $kode, $tgl, $pelanggan, $qty, $harga, $metode, $buah, $status);
+        $stmt->bind_param("sssssssssi", $id, $kode, $tgl, $id_pelanggan, $qty, $harga, $metode, $id_buah, $status);
         $result = $stmt->execute();
         $stmt->close();
         // Mengembalikan hasil eksekusi query
@@ -139,47 +132,47 @@ class Trx extends Database {
     }
 
     // Method untuk mencari data mahasiswa berdasarkan kata kunci
-    public function searchTrx($kataKunci){
-        // Menyiapkan LIKE query untuk pencarian
-        $likeQuery = "%".$kataKunci."%";
-        // Menyiapkan query SQL untuk pencarian data mahasiswa menggunakan prepared statement
-        $query = "SELECT id_trx, kode_trx, tgl_trx, nama_pelanggan, total_qty, total_harga, metode_bayar, nama_buah, status_mhs 
-                  FROM tb_trx
-                  JOIN tb_buah ON buah = kode_buah
-                  JOIN tb_pelanggan ON pelanggan = id_pelanggan
-                  WHERE id_trx LIKE ? OR kode_trx LIKE ?";
-        $stmt = $this->conn->prepare($query);
-        if(!$stmt){
-            // Mengembalikan array kosong jika statement gagal disiapkan
-            return [];
-        }
-        // Memasukkan parameter ke statement
-        $stmt->bind_param("ss", $likeQuery, $likeQuery);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        // Menyiapkan array kosong untuk menyimpan data mahasiswa
-        $mahasiswa = [];
-        if($result->num_rows > 0){
-            // Mengambil setiap baris data dan memasukkannya ke dalam array
-            while($row = $result->fetch_assoc()) {
-                // Menyimpan data mahasiswa dalam array
-                $trx[] = [
-                    'id' => $row['id_trx'],
-                    'kode' => $row['kode_trx'],
-                    'tgl' => $row['tgl_trx'],
-                    'pelanggan' => $row['nama_pelanggan'],
-                    'qty' => $row['total_qty'],
-                    'harga' => $row['total_harga'],
-                    'metode' => $row['metode_bayar'],
-                    'buah' => $row['nama_buah'],
-                    'status' => $row['status_trx']
-                ];
-            }
-        }
-        $stmt->close();
-        // Mengembalikan array data mahasiswa yang ditemukan
-        return $trx;
+public function searchTrx($kataKunci){
+    $likeQuery = "%".$kataKunci."%";
+
+    $query = "SELECT t.id_trx, t.kode_trx, t.tgl_trx, t.id_pelanggan, t.total_qty, t.total_harga, t.metode_bayar, 
+                     t.id_buah, t.status_trx, b.nama_buah, p.nama_pelanggan
+              FROM tb_trx AS t
+              JOIN tb_buah AS b ON t.id_buah = b.id_buah
+              JOIN tb_pelanggan AS p ON t.id_pelanggan = p.id_pelanggan
+              WHERE t.id_trx LIKE ? OR t.kode_trx LIKE ?";
+
+    $stmt = $this->conn->prepare($query);
+    if(!$stmt){
+        return [];
     }
+
+    $stmt->bind_param("ss", $likeQuery, $likeQuery);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $trx = [];
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()) {
+            $trx[] = [
+                'id' => $row['id_trx'],
+                'kode' => $row['kode_trx'],
+                'tgl' => $row['tgl_trx'],
+                'id_pelanggan' => $row['id_pelanggan'],
+                'qty' => $row['total_qty'],
+                'harga' => $row['total_harga'],
+                'metode' => $row['metode_bayar'],
+                'id_buah' => $row['id_buah'],
+                'status' => $row['status_trx'],
+                'nama_buah' => $row['nama_buah'],        // <--- tambahkan ini
+                'nama_pelanggan' => $row['nama_pelanggan'] // <--- tambahkan ini
+            ];
+        }
+    }
+    $stmt->close();
+
+    return $trx;
+}
 
 }
 

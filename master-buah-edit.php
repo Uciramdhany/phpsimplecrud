@@ -42,7 +42,6 @@ if(isset($_GET['status'])){
 						</div>
 					</div>
 				</div>
-
 				<div class="app-content">
 					<div class="container-fluid">
 						<div class="row">
@@ -60,15 +59,15 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
-                                    <form action="proses/proses-databuah.php?aksi=updatedatabuah" method="POST">
+                                    <form action="proses/proses-databuah.php?aksi=updatebuah" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
                                                 <label for="nama" class="form-label">Kode buah</label>
-                                                <input type="text" class="form-control-plaintext" id="kode" name="kode" placeholder="Masukkan Kode Data Buah" value="<?php echo $buah['id']; ?>" required readonly>
+                                                <input type="text" class="form-control-plaintext" id="kode" name="kode" placeholder="Masukkan Kode Data Buah" value="<?php echo $dataBuah['id']; ?>" required readonly>
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama buah</label>
-												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Buah" value="<?php echo $buah['nama']; ?>" required>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Buah" value="<?php echo $dataBuah['nama']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

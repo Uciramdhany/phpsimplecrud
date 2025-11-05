@@ -64,6 +64,18 @@ if(isset($_GET['status'])){
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pelanggan" required>
 											</div>
                                         </div>
+										<div class="card-body">
+											<div class="mb-3">
+												<label for="no_hp" class="form-label">No HP</label>
+												<input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan No HP Pelanggan" required>
+											</div>
+                                        </div>
+										<div class="card-body">
+											<div class="mb-3">
+												<label for="email" class="form-label">Email</label>
+												<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email Pelanggan" required>
+											</div>
+                                        </div>
 									    <div class="card-footer">
                                             <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='master-pelanggan-list.php'">Batal</button>
                                             <button type="reset" class="btn btn-secondary me-2 float-start">Reset</button>

@@ -8,10 +8,14 @@ $master = new MasterData();
 if($_GET['aksi'] == 'inputpelanggan'){
     // Mengambil data pelanggan dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataPelanggan = [
-        'nama' => $_POST['nama']
+        'id' => $_POST['id'],
+        'nama' => $_POST['nama'],
+        'no_hp' => $_POST['no_hp'],
+        'email' => $_POST['email']
     ];
     // Memanggil method inputProvinsi untuk memasukkan data provinsi dengan parameter array $dataProvinsi
-    $input = $master->inputPelanggan($dataPelanggan);
+    $input = $master->inputPelanggan($_POST);
+    
     if($input){
         header("Location: ../master-pelanggan-list.php?status=inputsuccess");
     } else {
@@ -21,7 +25,9 @@ if($_GET['aksi'] == 'inputpelanggan'){
     // Mengambil data pelanggan dari form edit menggunakan metode POST dan menyimpannya dalam array
     $dataPelanggan = [
         'id' => $_POST['id'],
-        'nama' => $_POST['nama']
+        'nama' => $_POST['nama'],
+        'no_hp' => $_POST['no_hp'],
+        'email' => $_POST['email']
     ];
     // Memanggil method updatePelanggan untuk mengupdate data pelanggan dengan parameter array $dataPelanggan
     $update = $master->updatePelanggan($dataPelanggan);
