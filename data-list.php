@@ -67,7 +67,7 @@ $dataTrx = $trx->getAllTrx();
 											</button>
 										</div>
 									</div>
-									<div class="card-body p-0 table-responsive">
+									<div class="card-body p-3 table-responsive">
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
@@ -79,6 +79,7 @@ $dataTrx = $trx->getAllTrx();
 													<th>Total harga</th>
 													<th>Metode Bayar</th>
 													<th>Status Transaksi</th>
+													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>

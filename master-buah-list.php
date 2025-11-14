@@ -67,16 +67,17 @@ $dataBuah = $master->getBuah();
 											</button>
 										</div>
 									</div>
-									<div class="card-body p-0 table-responsive">
+									<div class="card-body p-3 table-responsive">
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
-													<th>id</th>
+													<th>kode</th>
 													<th>nama</th>
 													<th>jenis</th>
 													<th>stok</th>
 													<th>harga</th>
 													<th>satuan</th>
+													<th>aksi</th>
 												</tr>
 											</thead>
 											<tbody>

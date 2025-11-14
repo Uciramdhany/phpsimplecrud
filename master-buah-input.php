@@ -61,8 +61,8 @@ if(isset($_GET['status'])){
 									    <div class="card-body">
                                             <div class="mb-3">
                                                 <label for="id" class="form-label">ID Buah</label>
-												<input type="text" class="form-control-plaintext" id="id" name="id" 
-    											value="<?php echo $dataBuah['id']; ?>" readonly>
+												<input type="text" class="form-control" id="id" name="id" placeholder="Masukkan ID Buah"
+    											value="<?php echo $dataBuah['id'] ?? ''; ?>" required>
                                             </div>
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Buah</label>
@@ -82,8 +82,8 @@ if(isset($_GET['status'])){
 											</div>
 											<div class="mb-3">
     											<label for="satuan" class="form-label">Satuan</label>
-    											<input type="text" class="form-control" id="satuan" name="satuan" 
-        										value="<?php echo $dataBuah['satuan']; ?>" required>
+    											<input type="text" class="form-control" id="satuan" name="satuan" placeholder="Masukkan Satuan Buah"
+        										value="<?php echo $dataBuah['satuan'] ?? ''; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

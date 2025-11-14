@@ -82,9 +82,10 @@ if(isset($_GET['status'])){
                                                     } ?>
                                                 </select>
                                             </div>
-                                             <div class="mb-3">
-                                                <label for="tgl" class="form-label">tanggal trx</label>
-                                                <textarea class="form-control" id="tgl" name="tgl" rows="3" placeholder="Masukkan Tanggal Transaksi" required></textarea>
+                                            <div class="mb-3">
+                                                <label for="tgl" class="form-label">Tanggal Transaksi</label>
+                                                <input type="date" class="form-control" id="tgl" name="tgl" 
+                                                    value="<?php echo date('Y-m-d'); ?>" required>
                                             </div>
                                             <select class="form-select" id="pelanggan" name="id_pelanggan" required>
                                                 <option value="" selected disabled>Pilih Pelanggan</option>

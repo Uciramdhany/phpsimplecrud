@@ -17,10 +17,7 @@
 				<div class="app-content-header">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-6">
-								<h3 class="mb-0">SISTEM FRUITY LOOPY'S</h3>
-							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-6 mb-0">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Beranda</li>
@@ -35,7 +32,6 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="card">
-
 									<div class="card-header">
 										<h3 class="card-title">Selamat Datang!</h3>
 										<div class="card-tools">
@@ -50,8 +46,8 @@
 									</div>
 
 									<div class="card-body">
-										<p>Halo user! SICMAS merupakan singkatan dari Sistem Informasi CRUD Mahasiswa, aplikasi ini bertujuan untuk mengajarkan bagaimana merancang sebuah dashboard pengelolaan dengan konsep CRUD menggunakan bahasa pemrograman PHP. Penulisan kode menggunakan OOP (Object Oriented Programming). Silakan gunakan secara bijak dan modifikasi sesuai keperluan!</p>
-										<p>Silakan pilih salah satu tombol untuk memulai!</p>
+										<p>Halo user! FRUITY LOOPY'S adalah toko buah yang ceria dan penuh warna, tempat di mana setiap buah punya cerita. Di sini, kamu bisa menemukan apel yang renyah, strawberry yang manis, nanas yang segar, dan berbagai buah lain langsung dari petani lokal.</p>
+										<p>Misi kami sederhana: membantu petani lokal menjual buah mereka dengan lebih mudah, sambil memberikan pengalaman belanja yang menyenangkan bagi semua. Dari kebun ke meja makan, setiap transaksi di FRUITY LOOPY'S membuat senyum petani lebih lebar dan perutmu lebih bahagia!</p>
 										<a href="data-input.php" class="btn btn-primary btn-lg"><i class="bi bi-clipboard-data-fill"></i> Input Transaksi</a>
 										<a href="data-list.php" class="btn btn-success btn-lg"><i class="bi bi-card-list"></i> Lihat Daftar Transaksi</a>
 										<a href="data-search.php" class="btn btn-warning btn-lg"><i class="bi bi-search-heart-fill"></i> Cari Transaksi</a>

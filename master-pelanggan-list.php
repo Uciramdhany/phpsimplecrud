@@ -67,7 +67,7 @@ $dataPelanggan = $master->getPelanggan();
 											</button>
 										</div>
 									</div>
-									<div class="card-body p-0 table-responsive">
+									<div class="card-body p-3 table-responsive">
 										<table class="table table-striped" role="table">
 											<thead>
 												<tr>
@@ -75,6 +75,7 @@ $dataPelanggan = $master->getPelanggan();
 													<th>Nama Pelanggan</th>
 													<th>NO HP</th>
 													<th>Email</th>
+													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>

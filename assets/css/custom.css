@@ -2,17 +2,52 @@
   background: linear-gradient(90deg, #b1fd7f, #2b6817);
   color: white;
 }
-
 .app-header h3 {
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-style: normal; /*Font tidak miring*/
+  font-weight: bold; /*biar fontnya tebel*/
+  letter-spacing: 1px; /*biar ada jaraknya antar huruf*/
 }
 
-.nav-link i {
-  color: white;
+.nav-link i { /*Mengatur ikon <i> di dalam elemen dengan class .nav-link*/
+  color: rgb(255, 255, 255);
   font-size: 1.2rem;
 }
 
 .bg-body-secondary {
-    background-color: rgb(23, 140, 12)!important;
+  background-color: rgb(23, 140, 12)!important;
+}
+
+.app-footer {
+  text-align: center; /* Membuat teks berada di tengah*/
+  padding: 15px 0;   /* Memberi ruang vertikal*/
+  background: linear-gradient(90deg, #b1fd7f, #2b6817); /* Gradasi horizontal */
+  color: white; /* Warna teks */
+  font-style: italic;
+  font-weight: bold;
+}
+
+.card-body{
+  background-color: #ff9797;
+  color:white;
+}
+
+.card-header{
+  background-color:#ff91a7;
+  color:white;
+  
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: flex-start; /* Naik ke atas */
+}
+.navbar-brand {
+  display: flex; /* untuk membuat layout fleksibel */
+  align-items: center; /* Naik ke atas */
+}
+
+.navbar-brand img {
+  vertical-align: top; /*untuk meratakan elemen ke bagian atas */
+  height: 80px;
+  margin-top: -2px;
 }

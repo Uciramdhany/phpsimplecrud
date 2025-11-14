@@ -2,14 +2,14 @@
 
     <div class="container-fluid">
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav navbar-expand-lg navbar-dark px-3">
             <li class="nav-item">
                 <a class="navbar-brand text-white fw-bold fs-4 nav-link" data-lte-toggle="sidebar" href="index.php" role="button">
-                <img src="assets/img/logo.png" alt="Logo" width="50" class="me-2">
+                <img src="assets/img/logo.png" alt="Logo" height="40" class="me-2">
                     <i class="bi bi-list"></i>
                 </a>
             </li>
-            <h3 class="mb-0">FRUITY LOOPY'S</h3>
+            <h3 class="ms-1">SISTEM FRUITY LOOPY'S</h3>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
